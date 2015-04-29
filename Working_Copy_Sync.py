@@ -21,7 +21,7 @@ def showPopupInputAlert(title, handler, text, yPos):
 	v['label'].text = title
 	v['buttonOK'].action = handler
 	xPos = 990
-	yPos = yPos + 84
+	yPos += 84
 	v['textfield'].text = text
 	v['textfield'].begin_editing()
 	v.height = 90
@@ -40,7 +40,7 @@ def showPopupButton(title, handler, yPos):
 	v['button'].title = title
 	v['button'].action = handler
 	xPos = 990
-	yPos = yPos + 75
+	yPos += 75
 	v.height = 6
 	v.present('popover', popover_location=(xPos,yPos), hide_title_bar=True)
 	
@@ -52,8 +52,7 @@ def info():
 	info = editor.get_path()
 	#documentsDir starts with '/private' whereas info does not
 	fullPath = info[len(documentsDir)-7:]
-	path = fullPath.split('/',1)[1]
-	repo = fullPath.split('/',1)[0]
+	repo, path = fullPath.split('/',1)
 	return repo,path
 	
 def sendB64(repo,path,text):
@@ -117,7 +116,17 @@ def getZipPt2(sender):
 		url += urllib.urlencode(f).replace('+','%20')
 		url += '&x-success=' + urllib.quote_plus(success)
 		wb.open(url)
-
+		
+def listFiles(sender):
+	#closePopup(sender)
+	repo,path = info()
+	url = 'working-copy://x-callback-url/status/?'
+	f = {'repo':repo, 'key':key, 'recursive':'1', 'unchanged':'1'}
+	success ='pythonista://'+INSTALL_PATH+'/rxFileList.py?action=run&argv='+repo+'&argv='
+	url += urllib.urlencode(f).replace('+','%20')
+	url += '&x-success=' + urllib.quote_plus(success)
+	wb.open(url)
+		
 def checkKey():
 	global key
 	key = keychain.get_password('wcSync','xcallback')

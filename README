@@ -12,7 +12,7 @@ Finally, you need to enable x-callback-url in the working copy settings. Now you
 
 The first time you run the code it will ask you for the Working Copy key. This will be stored in the Pythonista keychain so you will not need to enter it again.
 
-You will also have to set INSTALL_PATH to match the path where you have installed rxFile.py and rxZip.py.  This should not have a leading or trailing '/'.
+You will also have to set INSTALL_PATH in both Working_Copy_Sync.py and rxFileList.py to match the path where you have installed rxFile.py and rxZip.py.  This should not have a leading or trailing '/'.
 
 3. Instructions
 
@@ -24,10 +24,13 @@ The download icon will download the version of the file from Working Copy and ov
 
 The upload icon will write the latest script to the Working Copy version of the file. If the file is new it will be added in working copy as a new file in the repository.  The file will be written into the repository with the same name as the top level directory within the Pythonista file system, any intermediate directories will be created in the Working Copy repository. 
 
-The filmstrip icon will upload the pyui file relating to the python script to Working Copy.  The file will be written into the repository with the same name as the top level directory within the Pythonista file system, any intermediate directories will be created in the Working Copy repository
+The filmstrip icon will upload the pyui file relating to the python script to Working Copy.  The file will be written into the repository with the same name as the top level directory within the Pythonista file system, any intermediate directories will be created in the Working Copy repository.
+
+The directory icon will allow you to select a specific file to download from Working Copy to Pythonista.  The file will be written into the repository with the same name as the top level directory within the Pythonista file system.
 
 4. Known Issues
 
 Requires Working Copy 1.5 or better.
 
 Local files have to have their top level directory (repository name) in the root of the Pythonista file system.
+The code for selection of individual files is basic and does not handle directories.
