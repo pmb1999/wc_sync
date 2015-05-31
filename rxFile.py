@@ -11,8 +11,9 @@ text = base64.b64decode(sys.argv[2]) # The text from the file
 
 #Create directory structure if missing
 try:
-	os.makedirs(os.path.join(os.path.expanduser('~/Documents'), path))
-except OSError, e:
+	dir = os.path.dirname(path)
+	os.makedirs(os.path.join(os.path.expanduser('~/Documents'), dir))
+except OSError as e:
 	#only pass if directory exists
 	if e.errno != errno.EEXIST:
 		raise e
